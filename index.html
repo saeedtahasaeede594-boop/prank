@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connecting...</title>
+
+<style>
+body{
+    background:black;
+    color:#00ff9c;
+    font-family: Consolas, monospace;
+    padding:15px;
+    font-size:16px;
+}
+
+#terminal{
+    white-space: pre-line;
+}
+
+.cursor{
+    display:inline-block;
+    width:10px;
+    background:#00ff9c;
+    margin-left:5px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink{
+    50%{opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div id="terminal"></div><span class="cursor"></span>
+
+<script>
+
+const text = [
+"> اتصال به سرور امن...",
+"> یافتن دستگاه اندروید...",
+"> مدل دستگاه: Samsung Android",
+"> دریافت IP ... 192.168.43.21",
+"> جستجوی فایل‌ها...",
+"> عکس‌ها پیدا شد ✔",
+"> مخاطبین پیدا شد ✔",
+"> ارسال داده‌ها...",
+"> ....",
+"> 😄",
+"> نترس ",
+"> ا",
+"> دفه بعدی !"
+];
+
+let line = 0;
+let char = 0;
+const speed = 35;
+const terminal = document.getElementById("terminal");
+
+function type(){
+    if(line < text.length){
+        if(char < text[line].length){
+            terminal.innerHTML += text[line][char];
+            char++;
+            setTimeout(type, speed);
+        }else{
+            terminal.innerHTML += "\n";
+            line++;
+            char = 0;
+            setTimeout(type, 600);
+        }
+    }
+}
+
+type();
+
+</script>
+
+</body>
+</html>
